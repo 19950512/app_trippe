@@ -1,7 +1,7 @@
-import 'package:app_triple/app/modules/auth/entities/logged_user.dart';
-import 'package:app_triple/app/modules/auth/errors/erros.dart';
-import 'package:app_triple/app/modules/auth/repositories/auth_repository.dart';
-import 'package:app_triple/app/modules/auth/usecases/login_usecase.dart';
+import 'package:app_triple/app/modules/auth/domain/entities/logged_user.dart';
+import 'package:app_triple/app/modules/auth/domain/errors/erros.dart';
+import 'package:app_triple/app/modules/auth/domain/repositories/auth_repository.dart';
+import 'package:app_triple/app/modules/auth/domain/usecases/login_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 
