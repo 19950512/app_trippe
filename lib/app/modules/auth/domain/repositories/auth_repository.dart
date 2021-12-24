@@ -1,9 +1,12 @@
-import 'package:app_triple/app/modules/auth/domain/entities/created_user.dart';
-import 'package:app_triple/app/modules/auth/domain/entities/recovered_user.dart';
-import 'package:app_triple/app/modules/auth/domain/usecases/created_usecase.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../domain/errors/erros.dart';
+
+import '../entities/created_user.dart';
+import '../usecases/created_usecase.dart';
+
+import '../entities/recovered_user.dart';
+
 import '../entities/logged_user.dart';
 import '../usecases/login_usecase.dart';
 

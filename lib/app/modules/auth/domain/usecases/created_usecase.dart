@@ -1,7 +1,7 @@
-import 'package:app_triple/app/modules/auth/domain/entities/created_user.dart';
-import 'package:app_triple/app/modules/auth/domain/repositories/auth_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:string_validator/string_validator.dart';
+import '../entities/created_user.dart';
+import '../repositories/auth_repository.dart';
 import '../errors/erros.dart';
 
 abstract class ICreateUsecase {

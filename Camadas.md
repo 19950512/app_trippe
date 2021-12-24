@@ -1,4 +1,4 @@
-omain
+Domain
   Entity
   Repository Interface
   UseCase
@@ -12,7 +12,7 @@ External
     Service(Local, Firebase, Http, Drivers)
 
 
-    
+
 
 
 Service

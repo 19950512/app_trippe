@@ -1,10 +1,8 @@
-import 'dart:io';
-
-import 'package:app_triple/app/modules/auth/domain/entities/recovered_user.dart';
-import 'package:app_triple/app/modules/auth/domain/errors/erros.dart';
-import 'package:app_triple/app/modules/auth/domain/repositories/auth_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:string_validator/string_validator.dart';
+import '../entities/recovered_user.dart';
+import '../errors/erros.dart';
+import '../repositories/auth_repository.dart';
 
 import 'login_usecase.dart';
 
