@@ -1,7 +1,9 @@
+import 'package:app_triple/app/modules/auth/domain/entities/created_user.dart';
 import 'package:app_triple/app/modules/auth/domain/errors/erros.dart';
 import 'package:app_triple/app/modules/auth/domain/entities/recovered_user.dart';
 import 'package:app_triple/app/modules/auth/domain/entities/logged_user.dart';
 import 'package:app_triple/app/modules/auth/domain/repositories/auth_repository.dart';
+import 'package:app_triple/app/modules/auth/domain/usecases/created_usecase.dart';
 import 'package:app_triple/app/modules/auth/domain/usecases/recovery_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:app_triple/app/modules/auth/domain/usecases/login_usecase.dart';
@@ -26,6 +28,11 @@ class AuthRepositoryMock implements AuthRepository {
     return Right(
       RecoveredUser(email: 'mattmaydana@gmail.com'),
     );
+  }
+
+  @override
+  Future<Either<AuthException, CreatedUser>> create(Createparams params) async {
+    return Right(CreatedUser(email: 'mattmaydana@gmail.com', name: 'Maydana'));
   }
 }
 
