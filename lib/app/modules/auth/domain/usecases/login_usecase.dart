@@ -17,10 +17,18 @@ class LoginUsecase implements ILoginUsecase {
   Future<Either<AuthException, LoggedUser>> call(
       CredentialsParams params) async {
     if (!isEmail(params.email)) {
-      return Left(AuthException('Erro email'));
+      return Left(AuthException('Informe um e-mail válido'));
     }
     if (params.password.isEmpty) {
-      return Left(AuthException('Erro password'));
+      return Left(AuthException('Password vazio'));
+    }
+
+    if (params.password.length < 8) {
+      return Left(AuthException('A senha precisa conter no mínimo 8 caracter'));
+    }
+    if (params.password.length > 36) {
+      return Left(
+          AuthException('A senha precisa conter no máximo 36 caracter'));
     }
 
     return await repository.login(params);

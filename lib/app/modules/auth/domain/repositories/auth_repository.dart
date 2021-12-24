@@ -1,3 +1,4 @@
+import 'package:app_triple/app/modules/auth/domain/entities/recovered_user.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../domain/errors/erros.dart';
@@ -6,4 +7,6 @@ import '../usecases/login_usecase.dart';
 
 abstract class AuthRepository {
   Future<Either<AuthException, LoggedUser>> login(CredentialsParams params);
+  Future<Either<AuthException, RecoveredUser>> recovery(
+      CredentialsParams params);
 }
