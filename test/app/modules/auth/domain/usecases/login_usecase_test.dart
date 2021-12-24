@@ -74,7 +74,7 @@ void main() {
     expect(result.isLeft(), true);
   });
 
-  test('Deve dar repository falhar', () async {
+  test('Deve falhar o repository', () async {
     final result = await usecase(
       CredentialsParams(email: 'mattmaydana@gmail.com', password: '1234'),
     );

@@ -19,14 +19,14 @@ class LoginUsecase implements ILoginUsecase {
     if (!isEmail(params.email)) {
       return Left(AuthException('Informe um e-mail válido'));
     }
-    if (params.password.isEmpty) {
+    if (params.password == null && params.password!.isEmpty) {
       return Left(AuthException('Password vazio'));
     }
 
-    if (params.password.length < 8) {
+    if (params.password!.length < 8) {
       return Left(AuthException('A senha precisa conter no mínimo 8 caracter'));
     }
-    if (params.password.length > 36) {
+    if (params.password!.length > 36) {
       return Left(
           AuthException('A senha precisa conter no máximo 36 caracter'));
     }
@@ -37,7 +37,7 @@ class LoginUsecase implements ILoginUsecase {
 
 class CredentialsParams {
   final String email;
-  final String password;
+  final String? password;
 
-  CredentialsParams({required this.email, required this.password});
+  CredentialsParams({required this.email, this.password});
 }

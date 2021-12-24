@@ -2,6 +2,7 @@ import 'package:app_triple/app/modules/auth/domain/errors/erros.dart';
 import 'package:app_triple/app/modules/auth/domain/entities/recovered_user.dart';
 import 'package:app_triple/app/modules/auth/domain/entities/logged_user.dart';
 import 'package:app_triple/app/modules/auth/domain/repositories/auth_repository.dart';
+import 'package:app_triple/app/modules/auth/domain/usecases/recovery_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:app_triple/app/modules/auth/domain/usecases/login_usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -18,6 +19,10 @@ class AuthRepositoryMock implements AuthRepository {
   @override
   Future<Either<AuthException, RecoveredUser>> recovery(
       CredentialsParams params) async {
+    if (params.email == 'email@test.com') {
+      return Left(AuthException('Erro no repository'));
+    }
+
     return Right(
       RecoveredUser(email: 'mattmaydana@gmail.com'),
     );
@@ -26,15 +31,39 @@ class AuthRepositoryMock implements AuthRepository {
 
 void main() {
   final repository = AuthRepositoryMock();
-  final usecase = RecoveredUser();
+  final usecase = RecoveryUsercase(repository);
 
-  test('Deve efetuar a recovery', () async {
+  test('Deve efetuar a recuperação do auth', () async {
     final result = await usecase(
-      CredentialsParams(email: 'mattmaydana@gmail.com', password: password),
+      CredentialsParams(email: 'mattmaydana@gmail.com'),
     );
 
     expect(result.isRight(), true);
-    expect(result.getOrElse(() => LoggedUser(name: '', email: '')).name,
-        "Maydana");
+    expect(result.getOrElse(() => RecoveredUser(email: '')).email,
+        'mattmaydana@gmail.com');
+  });
+
+  test('Deve dar erro quando o e-mail for inválido', () async {
+    final result = await usecase(
+      CredentialsParams(email: 'mattmaydana'),
+    );
+
+    expect(result.isLeft(), true);
+  });
+
+  test('Deve dar erro quando o e-mail for vazio', () async {
+    final result = await usecase(
+      CredentialsParams(email: ''),
+    );
+
+    expect(result.isLeft(), true);
+  });
+
+  test('Deve falhar o repository', () async {
+    final result = await usecase(
+      CredentialsParams(email: 'email@test.com'),
+    );
+
+    expect(result.isLeft(), true);
   });
 }
