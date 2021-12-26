@@ -4,7 +4,7 @@ import 'package:app_triple/app/modules/auth/domain/entities/logged_user.dart';
 import 'package:app_triple/app/modules/auth/domain/entities/created_user.dart';
 import 'package:app_triple/app/modules/auth/domain/repositories/auth_repository.dart';
 import 'package:dartz/dartz.dart';
-import 'package:app_triple/app/modules/auth/domain/usecases/login_usecase.dart';
+import 'package:app_triple/app/modules/auth/domain/usecases/logged_usecase.dart';
 import 'package:app_triple/app/modules/auth/domain/usecases/created_usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -12,7 +12,7 @@ class AuthRepositoryMock implements AuthRepository {
   @override
   Future<Either<AuthException, CreatedUser>> create(Createparams params) async {
     if (params.name == 'falha ai') {
-      return Left(AuthException('Erro no Repository'));
+      return Left(AuthException(message: 'Erro no Repository'));
     }
     return Right(CreatedUser(email: 'mattmaydana@gmail.com', name: 'Maydana'));
   }

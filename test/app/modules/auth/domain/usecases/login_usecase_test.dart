@@ -4,7 +4,7 @@ import 'package:app_triple/app/modules/auth/domain/entities/recovered_user.dart'
 import 'package:app_triple/app/modules/auth/domain/errors/erros.dart';
 import 'package:app_triple/app/modules/auth/domain/repositories/auth_repository.dart';
 import 'package:app_triple/app/modules/auth/domain/usecases/created_usecase.dart';
-import 'package:app_triple/app/modules/auth/domain/usecases/login_usecase.dart';
+import 'package:app_triple/app/modules/auth/domain/usecases/logged_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -13,7 +13,7 @@ class AuthRepositoryMock implements AuthRepository {
   Future<Either<AuthException, LoggedUser>> login(
       CredentialsParams params) async {
     if (params.password == '1234') {
-      return Left(AuthException('Repository Erro'));
+      return Left(AuthException(message: 'Repository Erro'));
     }
 
     return Right(LoggedUser(name: "Maydana", email: params.email));
@@ -33,7 +33,7 @@ class AuthRepositoryMock implements AuthRepository {
 
 void main() {
   final repository = AuthRepositoryMock();
-  final usecase = LoginUsecase(repository);
+  final usecase = LoggedUsecase(repository);
 
   String password = '123456789';
 

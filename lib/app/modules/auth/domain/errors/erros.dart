@@ -1,8 +1,15 @@
-class AuthException implements Exception {
+abstract class Failure implements Exception {
+  String get message;
+}
+
+class AuthException extends Failure {
   final String message;
+  AuthException({required this.message});
+  String toString() => 'AuthException(message: $message)';
+}
 
-  AuthException(this.message);
-
-  @override
+class ConnectionError extends Failure {
+  final String message;
+  ConnectionError({required this.message});
   String toString() => 'AuthException(message: $message)';
 }

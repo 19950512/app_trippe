@@ -4,7 +4,7 @@ import '../entities/recovered_user.dart';
 import '../errors/erros.dart';
 import '../repositories/auth_repository.dart';
 
-import 'login_usecase.dart';
+import 'logged_usecase.dart';
 
 abstract class IRecoveryUsecase {
   Future<Either<AuthException, RecoveredUser>> call(CredentialsParams params);
@@ -19,7 +19,7 @@ class RecoveryUsercase implements IRecoveryUsecase {
   Future<Either<AuthException, RecoveredUser>> call(
       CredentialsParams params) async {
     if (!isEmail(params.email)) {
-      return Left(AuthException('Erro email'));
+      return Left(AuthException(message: 'Erro email'));
     }
 
     return await repository.recovery(params);

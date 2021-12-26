@@ -8,7 +8,7 @@ import '../usecases/created_usecase.dart';
 import '../entities/recovered_user.dart';
 
 import '../entities/logged_user.dart';
-import '../usecases/login_usecase.dart';
+import '../usecases/logged_usecase.dart';
 
 abstract class AuthRepository {
   Future<Either<AuthException, LoggedUser>> login(CredentialsParams params);

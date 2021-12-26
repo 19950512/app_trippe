@@ -4,3 +4,8 @@
 .packages
 
 build/test_cache/*
+.idea/*
+build/*
+linux/*
+.dart_tool/flutter_build/*
+.metadata

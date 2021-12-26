@@ -6,7 +6,7 @@ import 'package:app_triple/app/modules/auth/domain/repositories/auth_repository.
 import 'package:app_triple/app/modules/auth/domain/usecases/created_usecase.dart';
 import 'package:app_triple/app/modules/auth/domain/usecases/recovery_usecase.dart';
 import 'package:dartz/dartz.dart';
-import 'package:app_triple/app/modules/auth/domain/usecases/login_usecase.dart';
+import 'package:app_triple/app/modules/auth/domain/usecases/logged_usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 class AuthRepositoryMock implements AuthRepository {
@@ -22,7 +22,7 @@ class AuthRepositoryMock implements AuthRepository {
   Future<Either<AuthException, RecoveredUser>> recovery(
       CredentialsParams params) async {
     if (params.email == 'email@test.com') {
-      return Left(AuthException('Erro no repository'));
+      return Left(AuthException(message: 'Erro no repository'));
     }
 
     return Right(
