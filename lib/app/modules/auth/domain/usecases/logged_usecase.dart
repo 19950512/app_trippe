@@ -1,21 +1,24 @@
 import 'package:dartz/dartz.dart';
 import 'package:string_validator/string_validator.dart';
-import '../entities/logged_user.dart';
-import '../repositories/auth_repository.dart';
+
+import 'package:app_triple/app/modules/auth/domain/entities/logges_user_info.dart';
+
 import '../errors/erros.dart';
+import '../repositories/auth_repository.dart';
 
 abstract class ILoginUsecase {
-  Future<Either<AuthException, LoggedUser>> call(CredentialsParams params);
+  Future<Either<Failure, LoggedUserInfo>> call(CredentialsParams params);
 }
 
 class LoggedUsecase implements ILoginUsecase {
   final AuthRepository repository;
 
-  LoggedUsecase(this.repository);
+  LoggedUsecase({
+    required this.repository,
+  });
 
   @override
-  Future<Either<AuthException, LoggedUser>> call(
-      CredentialsParams params) async {
+  Future<Either<Failure, LoggedUserInfo>> call(CredentialsParams params) async {
     if (!isEmail(params.email)) {
       return Left(AuthException(message: 'Informe um e-mail válido'));
     }

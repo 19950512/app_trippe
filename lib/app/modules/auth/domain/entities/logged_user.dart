@@ -1,6 +1,7 @@
 class LoggedUser {
-  final String name;
-  final String email;
+  final String? name;
+  final String? email;
+  final String? phoneNumber;
 
-  LoggedUser({required this.name, required this.email});
+  LoggedUser({this.name, this.email, this.phoneNumber});
 }
